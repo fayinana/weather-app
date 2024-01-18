@@ -1,390 +1,103 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    /* font-family: cursive; */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background: #222;
+  background: rgb(6, 6, 48);
+  font-size: 100%;
 }
 
-body{
-    background: radial-gradient(#07098d, rgb(2, 2, 43));
-    letter-spacing: .125rem;
-    
+.card {
+  background: rgba(6, 78, 138, 0.3);
+  box-shadow: 0 8px 16px 0 rgba(6, 11, 80, 0.37);
+  backdrop-filter: blur( 11.5px ); 
+  -webkit-backdrop-filter: blur( 11.5px );
+  border: 1px solid rgba(2, 23, 63, 0.18);
+  color: white;
+  padding: 2em;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 420px;
+  margin: 1em;
+  overflow: hidden;
 }
 
-.section-center{
-    padding: 3rem;
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/*
-=====================
- nav bar and search engen css
-=====================
-*/
-nav{
-    height: 10vh;
-    padding: .5rem 3rem;
+button {
+  margin: 0.5em;
+  border-radius: 50%;
+  border: none;
+  height: 44px;
+  width: 44px;
+  outline: none;
+  background: rgba( 255, 255, 255, 0.25 );
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 
-nav .search{
-    all: initial;
-    border: 1px solid rgb(2, 2, 43);
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: 60%;
-    border-radius: 10000px;
-    background: rgb(226, 227, 228);
-    padding: .5rem 1.5rem;
-    box-sizing: border-box;
+input.search-bar {
+  border: none;
+  outline: none;
+  padding: 0.4em 1em;
+  border-radius: 24px;
+  background: rgba( 0, 0, 0, 0.30 );
+  color: white;
+  font-family: inherit;
+  font-size: 105%;
+  width: calc(100% - 100px);
 }
 
-
-img{
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-    display: block;
+button:hover {
+  background: #7c7c7c6b;
 }
 
-
- /*
- ==============================
- the components container css
- ============================== 
-  */
-.container{
-    min-height: 90vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 33.3% 33.3% 33.3%;
-    grid-template-areas: 
-    'a a'
-    'c c'
-    'b b'
-    ;
-    max-width: 992px;
-    margin: 0 auto;
-    gap: 2rem;
-}
-/* 
-=================================
-the-curent-day-icon-container
-=================================
- */
-
-.the-curent-day-icon-container{
-    position: relative;
-    grid-area: a;
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-    'heat-icon weather-icon'
-    'heat-icon info-container';
+h1.temp {
+  margin: 0;
+  margin-bottom: 0.4em;
 }
 
-
-.the-heat-icon-container{
-    grid-area: heat-icon;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 7fr 2fr;
-    padding: 2rem 0;
-}
-.basic_info{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-}
-.the-heat-icon-container p{
-    letter-spacing: 1px;
-text-align: center;
-font-size: clamp(10px ,4vw , 24px);
-color: rgb(213, 201, 246);
-
+.flex {
+  display: flex;
+  align-items: center;
 }
 
-.the-weather-type-icon-container{
-    grid-area: weather-icon;
-    padding: 1.5rem;
-}
-.the-weather-type-icon-container img{
-    display: block;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
+.description {
+  text-transform: capitalize;
+  margin-left: 8px;
 }
 
-.the-weather-info-container{
-    font-family: sans-serif !important;
-    grid-area: info-container; 
-    padding: 1rem;
+.weather.loading {
+  visibility: hidden;
+  max-height: 20px;
+  position: relative;
 }
 
-
-.the-weather-info-container .tempreture{
-    letter-spacing: initial;
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    color: rgb(213, 139, 0);
-    padding:.5rem 1rem;
-
+.weather.loading:after {
+  visibility: visible;
+  content: "Loading...";
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 20px;
 }
 
-.the-weather-info-container .type-info{
-    color: white;
-    letter-spacing: initial;
-    font-size: 1rem;
-    font-weight: lighter;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: capitalize;
-}
-/* 
-============================
-cuerent day info css
-============================
-*/
-
-.the-curent-day-info-container{
-    grid-area: c;
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3.5fr;
-}
-.title-container{
-    position: relative;
+.js-tilt-glare {
+  border-radius: 10px;
 }
 
-.title-container > .title{
-    text-transform: capitalize;
-    color: white;
-    font-size:clamp(16px, 3vw, 20px);
-    padding:.0 1rem;
-
-}
-
-.line{
-    width: 100%;
-    position: absolute;
-   bottom: 10px;
-    left: 0;
-    height: 5px;
-    background: linear-gradient(90deg, white,transparent);
-}
-
-.the-curent-day-info-container .info-dispaly{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
-.left-info-display{
-width: 250px;
-display: flex;
-flex-direction: column;
-gap: .5rem;
-}
-
-.right-info-display{
-width: 250px;
-display: flex;
-flex-direction: column;
-gap: .5rem;
-
-}
-
-
-
-.font{
-    font-size: 1.1rem;
-    color: white;
-    text-transform: capitalize;
-}
-
-
-
-
-/* 
-===========================
-the feauture display container
-=========================== */
-
-.section_container{
-    position: relative;
-    grid-area: b;
-}
-
-.line-vertical{
-    display: none;
-}
-
-
-.the-future-day-forcust-container{
-    height: 100%;
-    width: 100%;
-    scroll-snap-type: x mandatory;
-    position: relative;
-    display: grid;
-    align-items: center;
-    grid-auto-flow: column; 
-    gap: 1rem;
-    grid-auto-rows: 100%;
-    grid-auto-columns: 45%;
-    overflow-x: auto;
-    overscroll-behavior-block: contain;
-
-}
-
-/* .the-heat-icon-container */
-
-.the-future-day-forcust-container > .scroll-element{
-    position: relative;
-    scroll-snap-align: start;
-    display: grid;
-    grid-template-columns: 1fr ;
-    grid-template-rows: 1fr 1fr;
-    /* border:  1px solid red; */
-}
-.the-future-day-forcust-container > .scroll-element > .title{
-    display: flex;
-    flex-wrap: wrap;
-    color: rgb(213, 201, 246);
-    position: absolute;
-    top: 5px;
-    left: 2rem;
-}
-
-.the-future-day-forcust-container > .scroll-element > .title .forcust-day{
-    font-size: clamp(8px,2.5vw,18px);
-    
-}
-.the-future-day-forcust-container > .scroll-element > .title .forcust-date{
-    font-size: clamp(6px,1.6vw,16px);
-    
-}
-
-
-.the-future-day-forcust-container > .scroll-element > .forcust-info{
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: center;
-    gap: .125rem;
-
-    
-}
-.the-future-day-forcust-container > .scroll-element > .forcust-img{
-    padding: 2rem 2rem 0rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    gap: .125rem;
-    
-}
-.one-line{
-   display: none;
-}
-
-
-/* a box style for forcust boxs up to the widthe of the screen = 768 */
-.box{
-    box-shadow: 2px 2px 3px 1px #050774;
-    height:clamp(250px,60vw,300px);
-    background: radial-gradient(#07098d, rgb(7, 7, 79));
-}
-
-@media screen and (min-width:768px) {
-    /* over riding the box style */
-    .box{
-       box-shadow: initial;
-       height: initial;
-       background: initial;
-    }
-    nav .search{
-    
-        width: 70%;
-        height: 90%;     
-            }
-    .container{
-        height: 90vh;
-        grid-template-areas: 
-        'a b'
-        'a b'
-        'c c'
-        ;
-      }
-    
-    
-
-    
-
-.the-future-day-forcust-container{
-    scroll-snap-type: y mandatory;
-    grid-auto-flow: row; 
-    grid-auto-rows: 45%;
-    grid-auto-columns: 100%;
-    overflow-y: auto;
-}
-
-/* .the-heat-icon-container */
-
-.the-future-day-forcust-container > .scroll-element{
-    scroll-snap-align: top;
-    scroll-padding-top: 1rem;
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 0;
-    
-}
-
-.one-line{
-    display: flex;
-    width: 100%;
-    position: absolute;
-    top: 0;
-  left: 0;
-    height: 5px;
-    background: linear-gradient(90deg, white,transparent);
-}
-.line-vertical{
-    display: flex;
-    position: absolute;
-   left: 0;
-    top: 0;
-    width: 5px;
-    height: 100%;
-    background: linear-gradient(transparent, white, transparent);
-}
-.line{
-    width: 100%;
-    position: absolute;
-   bottom: 0;
-    left: 0;
-    height: 5px;
-    background: linear-gradient(90deg, white,transparent);
-}
-
-.the-curent-day-info-container .info-dispaly{
-    justify-content: space-between;
-    align-items: center;
-}
-}
-
-
-
-@media screen and (min-width:992px) {
-    nav .search{
-    
-        width: 50%;
-        height: 90%;     
-            }
+a {
+  margin-top: 7%;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
